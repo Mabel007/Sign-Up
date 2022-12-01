@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <script src="https://kit.fontawesome.com/45d9d1fdf2.js" crossorigin="anonymous"></script>
+    <title>Sign Up</title>
+</head>
+<body>
+    <h1>Sign Up</h1>
+    <form action="process-signup.php" method="post" novalidate>
+        <div>
+            <label for="fname">First Name :</label>
+            <input type="text" name="fname" id="">
+        </div>
+        <div>
+            <label for="lname">Last Name :</label>
+            <input type="text" name="lname" id="">
+        </div>
+        <div>
+            <label for="email">Email :</label>
+            <input type="email" name="email" id="">
+        </div>
+        <div>
+            <label for="password">Password :</label>
+            <input type="password" name="password" id="">
+        </div>
+        <div>
+            <label for="cpass">Confirm Password :</label>
+            <input type="password" name="cpass" id="">
+        </div>
+        <button type="submit" name="submit">
+            <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+            <span>Register</span>
+        </button>
+    </form>
+</body>
+</html>
