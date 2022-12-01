@@ -60,9 +60,21 @@ $stmt ->bind_param("ssss",
                    $_POST["email"],
                    $password_hash);
 // call the execute method on the statement object
-$stmt->execute();
+// $stmt->execute();
+// prevent duplicate emails from being stored again in the DB
+if( $stmt -> execute()){
+    header("location: signup-success.html");
+    exit;
+}
+else {
+    // detect the specific error code and return specific error msg
+    if($mysqli->errno === 1062) {
+        die("Email already taken!");
+    }
+    die($mysqli->error . " " .$mysqli->errno);
+}
 
-echo "Signup Succesful!";
+
                    
 
 // print_r($_POST);
