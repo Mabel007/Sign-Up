@@ -27,6 +27,12 @@
 
 #### The ID field must be auto incremented, with INT data type, and be the primary key, the first, last name  and email fields must be varchar with length of 255 characters, the email field must be unique with a length of 255 varchar.
 
-#### Create a connection to the database using the mysqli object connect property. Use servername/ host, username, password and the database name,if there is an error stop the script and print out an error message with the specific error code
+#### Create a connection to the database using the mysqli object connect property. Use servername/ host, username, password and the database name,if there is an error stop the script and print out an error message with the specific error code.
 
-#### In the process-signup.php require the database file using the __DIR__ Constant
+#### In the process-signup.php require the database file using the __DIR__ Constant.
+
+#### Insert new records into the database(user's table), first write the SQL with the insert into method specifying the table name and the fields / columns we want to insert the records into, we don't need to add an ID as it is auto incremented. For the values we can use placeholder.
+
+#### Create a new prepared statement  object my calling the statement init method n the mysqli connection object to avoid SQL injection attack.
+
+#### Prepare the mysql statement for excution by calling the prepare method on the statement object, passing in the sql string as an argument.

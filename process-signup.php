@@ -2,10 +2,10 @@
 
 // check if the name fields are empty
 
-if (empty($_POST["fname"])){
+if (empty($_POST["first_name"])){
     die("First Name Is Required!");
 }
-if (empty($_POST["lname"])){
+if (empty($_POST["last_name"])){
     die("Last Name Is Required!");
 }
 
@@ -39,8 +39,32 @@ if ($_POST["password"] !== $_POST["cpass"]){
 
 $password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
+// require the database file using the DIR CONSTANTS
 $mysqli = require __DIR__ ."/database.php";
 
-print_r($_POST);
-var_dump($password_hash);
+//Insert new record into user table, and the columns/field names and use placeholders as values
+$sql = "INSERT INTO user (first_name, last_name, email, password_hash)
+        VALUES (?, ?, ?, ?)";
+
+//Call the stmt init() on the mysqli connection object
+$stmt = $mysqli->stmt_init();
+
+//Prepare mysqli for execution, pass sql as argument
+if( ! $stmt ->prepare($sql)){
+    die("SQL error: " .$mysqli->error);
+}
+// bind the values into the placeholders
+$stmt ->bind_param("ssss",
+                   $_POST["first_name"],
+                   $_POST["last_name"],
+                   $_POST["email"],
+                   $password_hash);
+// call the execute method on the statement object
+$stmt->execute();
+
+echo "Signup Succesful!";
+                   
+
+// print_r($_POST);
+// var_dump($password_hash);
 
