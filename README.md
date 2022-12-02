@@ -35,4 +35,21 @@
 
 #### Create a new prepared statement  object my calling the statement init method n the mysqli connection object to avoid SQL injection attack.
 
-#### Prepare the mysql statement for excution by calling the prepare method on the statement object, passing in the sql string as an argument.
+#### Prepare the mysql statement for excution by calling the prepare method on the statement object, passing in the sql string as an argument. Any stntax error will be caught  if the prepare method returns false then there is a problem with the SQL to catch this we can check for the return value, if it false, we will stop script and display the error etail which we can get from the error property of the connection object.
+
+#### After having the statements to execute let's bind the values into the placeholder, call the bind method on the statement object. As the variables use string we use "ssss" depending on the number of values to be inserted, follow the string with the actual values.Next call the execute method on the statement object.
+
+#### Even if the form is submitted more than once, the record will only be stored one time in the database, because we use the unique index on the email column, so one email address will not be stored twice.
+
+#### Add validation on the email address that prevents us from displaying the success message if the record with that email address already exists in thebdatabase. The execute method returns true if it was successful and false otheriwse.
+
+#### Detect specifc error based on error codes, and redirect to another page when signup is successful.
+
+#### Create a login form, and add the link on the signup succesful page.
+
+#### Add the php codes to the top of the file before the html, when the submit button is clicked the form will be submitted with a post method. When the form is submitted check if the email matches our record from the database. Connect to the database , require the DB php file, and write the SQL statements to select record based on the email address.
+
+#### Instead of using prepared statement on the email directly, since email is a string, use single quotes '', insert value from the form, use the sprintf function putting a string placeholder, where we want the value from the database to be stored. '%s'";, pass in array from the post super global to avoid SQL injectio attack, we need to escape the value coming from the form using the real_escape_string function from the mysqli object.
+
+#### Call the query method on the mysqli object passing in sql as argument, this returns a result object and assign a variable to get data from the result object, then we call the fetch_assoc method which will return the record if it is found in the database in the form of an associative array. Print out the assoc array stored in the user variable if the record is found.
+
