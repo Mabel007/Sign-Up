@@ -49,7 +49,22 @@
 
 #### Add the php codes to the top of the file before the html, when the submit button is clicked the form will be submitted with a post method. When the form is submitted check if the email matches our record from the database. Connect to the database , require the DB php file, and write the SQL statements to select record based on the email address.
 
-#### Instead of using prepared statement on the email directly, since email is a string, use single quotes '', insert value from the form, use the sprintf function putting a string placeholder, where we want the value from the database to be stored. '%s'";, pass in array from the post super global to avoid SQL injectio attack, we need to escape the value coming from the form using the real_escape_string function from the mysqli object.
+#### Instead of using prepared statement on the email directly, since email is a string, use single quotes '', insert value from the form, use the sprintf function putting a string placeholder, where we want the value from the database to be stored. '%s'"; , pass in array from the post super global to avoid SQL injection attack, we need to escape the value coming from the form using the real_escape_string function from the mysqli object.
 
 #### Call the query method on the mysqli object passing in sql as argument, this returns a result object and assign a variable to get data from the result object, then we call the fetch_assoc method which will return the record if it is found in the database in the form of an associative array. Print out the assoc array stored in the user variable if the record is found.
+
+#### Instead of printing it out, check that the user variable contains an array of data and is null, which can be achieved by using a simple if statement. Check the password if the record was found for that user email addresss, then verify if if the plain password in the $_POST from the password field matches the hash password stored in the database in the $password_hash variable.Returns true if they match and false otherwise. If they match print out a message and stop the script. If the correct details are entered the login succesful message will be displayed. If the credentials are incorrect, a blank login page will be shown. To make this a bit more user friendly, first show a message telling the user that the login was invalid.
+
+#### At the top of the script  add a variable called $is_invalid and set it to false, then at the end of the "if" block that will be executed when the form is syubmitted, let's set it to true. Once we reach that point in the script, when the form is submitted, either the email or password was invalid. Then in the html if the variable is true, display a message saying the credentials are invalid.
+
+#### When the credentials are invalid, keep the value of the email address, to do this add a value attribute to the email input, specifying the email element of the post array. When we first log the form this will be empty, so we will use the null coalescing operator to default it to an empty string.  As this is entrusted content we need to escape it, using the htmlspecialchars function. The value of the email will be remembered when invalid credentials are entered, after the submission of the form.
+
+#### Instead of showing the login succesful message, we can now log the user in, to do this store the user id in a session. Sessions are used to remember values used between browser requests. Add a new file to show if the user is logged in or not. Create an index.php file which will be the home page, when a user is usccesfully logged in. Inorder to use the sesiion on this page use the session_start() method.
+
+#### Once the session is started we can store values in the $_SESSION super global and there persists a cross request. Start or resume the session on the login page, store the user id in the $_SESSION super global and redirect to the index page and exit the script.
+
+#### Add html codes to the index.php page, after this check to see if the user id is set in the session using the isset() function and if it is print out a message. If it is not set display links to the login page, so the user can log in or sign up succesfully.
+
+
+
 
