@@ -67,7 +67,17 @@
 
 #### We need to add a logout functionality, so we'll be able to see how all this looks if we are not loged in. Add a new file called logout.php
 
-#### To destroy the session on this logout page, we call the session_destroy() function, once we've done that, let's redirect to the index page.
+#### To destroy the session on this logout page, we call the session_destroy() function, once we've done that, we will be redirected to the index page, but we won't be logged out. Even if we include the session_destroy() on the logout page, for us to be logged out we need to first call the session_start() function. Anytime you use a session you need to call the session_start().
+
+#### Let's make the login page a bit more user friendly, we will add the name of the user that is logged in. In the index or home page, let's check for the user id value in the session array, if this is set we can retrieve the record from the database, that corrresponds to that user id.
+
+#### Require the database script to get the connection, then write the sql to select the user record where the id, equals the value in the session, we don't need to escape it, as it is a value we have already set upin the session by ourselves.
+
+#### Then we'll run that using the query() method on the mysqli object, passing in the sql to get the result object. Finally, we'll get an associative array containing the records values, using the fetch_assoc() method, and assign it to a variable.
+
+#### In the html code, instead of checking the session, let's check if the user variable is set, then instead of printing out the previous message that was there, we'll print out a greeting with the logged in user's name, making sure we escape it with the htmlspecialchars function, as it is untrusted content. Before we try this, there is one more thing we need to add to the login page.
+
+#### As we're starting the session at the top of the index page when we load the login page, the session will already be started, this could make the code vulnerable to a session fixation attatck, to avoid this once we've logged in successfully, we regenerate the id by calling the session_regenerate_id() function. When we refresh the page now, we will se the personalized message.
 
 
 

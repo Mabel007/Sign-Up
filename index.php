@@ -1,6 +1,18 @@
 <?php
 
 session_start();
+// check for the user id in the session array
+if (isset($_SESSION["user_id"])){
+    //require the database file
+    $mysqli = require __DIR__ ."/database.php";
+    //select record from the user table, where id equals the value in the session user's id
+    $sql = "SELECT * FROM user
+            WHERE id = {$_SESSION["user_id"]}";
+    // run query method on the mysqli object using sql as an argument and store in the resukt variable
+    $result = $mysqli->query($sql);
+    //get associative array using fetch_assoc() method and store in a variable
+    $user = $result->fetch_assoc();
+}
 
 // print_r($_SESSION);
 
@@ -20,17 +32,17 @@ session_start();
 </head>
 <body>
     <h1>Home Page</h1>
-    <br>
     <!-- check to see if the user id is set in the session  -->
-    <?php if(isset($_SESSION["user_id"])) : ?>
+    <?php if(isset($user)) : ?>
         <!-- if the user is logged in print -->
-        <p>You are logged in!</p>
+        <b>Hello! <?= htmlspecialchars($user["first_name"]) ?></b>
+        <br>
+        <br>
         <!-- add a logout link to this page -->
-        <p><a href="logout.php">Logout</a></p>
-
+        <button type="button"><a href="logout.php">Log Out</a></button>
         <!-- if the user is not logged in redirect to login & signup pages-->
     <?php else: ?>
-        <p><a href="login.php">Login</a> or <a href="signup.html">Sign Up</a></p>
+        <b>Please</b> <button type="button"><a href="login.php">Log In</a></button> <b>Or</b> <button type="button"><a href="signup.html">Sign Up</a></button>
     <?php endif; ?>
 </body>
 </html>

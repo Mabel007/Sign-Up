@@ -28,6 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
         if (password_verify($_POST["password"], $user["password_hash"])){
             // start or resume session
             session_start();
+            // call the session regenerate_id() to avoid session fixation attack
+            session_regenerate_id();
             // store the user id in the session super global
             $_SESSION["user_id"] = $user["id"];
 
