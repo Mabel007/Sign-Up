@@ -65,6 +65,9 @@
 
 #### Add html codes to the index.php page, after this check to see if the user id is set in the session using the isset() function and if it is print out a message. If it is not set display links to the login page, so the user can log in or sign up succesfully.
 
+#### We need to add a logout functionality, so we'll be able to see how all this looks if we are not loged in. Add a new file called logout.php
+
+#### To destroy the session on this logout page, we call the session_destroy() function, once we've done that, let's redirect to the index page.
 
 
 

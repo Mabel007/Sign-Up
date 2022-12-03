@@ -25,6 +25,9 @@ session_start();
     <?php if(isset($_SESSION["user_id"])) : ?>
         <!-- if the user is logged in print -->
         <p>You are logged in!</p>
+        <!-- add a logout link to this page -->
+        <p><a href="logout.php">Logout</a></p>
+
         <!-- if the user is not logged in redirect to login & signup pages-->
     <?php else: ?>
         <p><a href="login.php">Login</a> or <a href="signup.html">Sign Up</a></p>

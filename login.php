@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
                     WHERE email = '%s'",
                     $mysqli->real_escape_string($_POST["email"]));
 
-    // call query method on the mysqli object and assign to result variable
+    //call query method on the mysqli object and assign to result variable, with sql as an argument
     $result = $mysqli->query($sql);
 
     // call the fetch assoc method and return record if it is found and store in a variable
