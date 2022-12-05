@@ -6,30 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
     <script src="https://kit.fontawesome.com/45d9d1fdf2.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js" defer></script>
+    <script src="js/validation.js" defer></script>
     <title>Sign Up</title>
 </head>
 <body>
     <h1>Sign Up</h1>
-    <form action="process-signup.php" method="post" novalidate>
+    <form action="process-signup.php" method="post" id="signup" novalidate>
         <div>
             <label for="fname">First Name :</label>
-            <input type="text" name="first_name" id="">
+            <input type="text" name="first_name" id="first_name">
         </div>
         <div>
             <label for="lname">Last Name :</label>
-            <input type="text" name="last_name" id="">
+            <input type="text" name="last_name" id="last_name">
         </div>
         <div>
             <label for="email">Email :</label>
-            <input type="email" name="email" id="">
+            <input type="email" name="email" id="email">
         </div>
         <div>
             <label for="password">Password :</label>
-            <input type="password" name="password" id="">
+            <input type="password" name="password" id="password">
         </div>
         <div>
             <label for="cpass">Confirm Password :</label>
-            <input type="password" name="cpass" id="">
+            <input type="password" name="cpass" id="cpass">
         </div>
         <br>
         <button>
